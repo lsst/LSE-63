@@ -1,16 +1,34 @@
-\documentclass[11pt, preprint]{aastex}
-\usepackage{amsmath}
-\usepackage{natbib}
-\begin{document}
-\title{Requirements for the LSST Data Quality Assessment Framework   \\  LSE-63}
-%\slugcomment{July 27, 2011}
+\documentclass[SE,toc]{lsstdoc}
 
+\title{LSST Data Quality Assurance Plan}
+\setDocSubtitle{Requirements for the LSST Data Quality Assessment Framework}
+\author{Tony Tyson, DQA Team, and Science Collaboration}
+\date{2011-07-31}
+\setDocRef{LSE-63}
 
-\begin{abstract}
+\setDocStatus{Released}
+\setDocRevision{7}
+
+\setDocAbstract{
 LSST must supply trusted petascale data products. The mechanisms by which the LSST project achieve this unprecedented level of data quality will have spinoff to data-enabled science generally. This document specifies high-level requirements for a LSST Data Quality Assessment
 Framework, and defines the four levels of quality assessment (QA) tools. Because this process involves system-wide hardware and software, data QA must be defined at the System level. The scope of this document is limited to the description of the overall framework and the general requirements. It derives from the LSST Science Requirements Document LPM-17. A flow-down document will describe detailed implementation of the QA, including the algorithms.  In most cases the monitoring strategy, the development path for these tools or the algorithms are known. Related documents are: LSST System Requirements LSE-29, Optimal Deployment Parameters Doc-11624, Observatory System Specifications LSE-30, Configuration Management Plan LPM-19, Project Quality Assurance Plan LPM-55, Software Development Plan LSE-16, Camera Quality implementation Plan LCA-227, System Engineering Management Plan LSE-17, and the Operations Plan Doc-7838.
-\end{abstract}
+}
 
+% Change history defined here. Will be inserted into
+% correct place with \maketitle
+% OLDEST FIRST: VERSION, DATE, DESCRIPTION, OWNER NAME
+\setDocChangeRecord{%
+\addtohist{1}{2011-06-06}{Initial version}{Tony Tyson}
+\addtohist{2}{2011-06-23}{Added content}{Tony Tyson}
+\addtohist{3}{2011-07-08}{General edits}{Tony Tyson}
+\addtohist{4}{2011-07-09}{General edits}{Tony Tyson}
+\addtohist{5}{2011-07-10}{General edits}{Tony Tyson}
+\addtohist{6}{2011-07-15}{Added content}{Tony Tyson}
+\addtohist{7}{2011-07-31}{Added content}{Tony Tyson}
+}
+
+\begin{document}
+\maketitle
 
 \section{Introduction}
 
