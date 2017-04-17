@@ -1,4 +1,7 @@
-\documentclass[SE,toc]{lsstdoc}
+\documentclass[SE,toc,lsstdraft]{lsstdoc}
+
+\newcommand{\oldtext}[1]{{\color{red} #1}}
+\newcommand{\newtext}[1]{{\color{blue} #1}}
 
 \title{LSST Data Quality Assurance Plan}
 \setDocSubtitle{Requirements for the LSST Data Quality Assessment Framework}
@@ -6,8 +9,8 @@
 \date{2011-07-31}
 \setDocRef{LSE-63}
 
-\setDocStatus{Released}
-\setDocRevision{7}
+\setDocStatus{draft}
+\setDocRevision{7+}
 
 \setDocAbstract{
 LSST must supply trusted petascale data products. The mechanisms by which the LSST project achieve this unprecedented level of data quality will have spinoff to data-enabled science generally. This document specifies high-level requirements for a LSST Data Quality Assessment
@@ -25,8 +28,8 @@ Framework, and defines the four levels of quality assessment (QA) tools. Because
 \addtohist{5}{2011-07-10}{General edits}{Tony Tyson}
 \addtohist{6}{2011-07-15}{Added content}{Tony Tyson}
 \addtohist{7}{2011-07-31}{Added content}{Tony Tyson}
-\addtohist{8}{2017-04-13}{Added content}{Tim Jenness}
-\addtohist{7}{2017-04-16}{Added content}{Tony Tyson}
+\addtohist{}{2017-04-13}{Modernize style. Use bibtex}{Tim Jenness}
+\addtohist{}{2017-04-16}{Update content}{Tony Tyson}
 }
 
 \begin{document}
