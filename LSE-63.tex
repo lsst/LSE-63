@@ -3,15 +3,12 @@
 \title{LSST Data Quality Assurance Plan}
 \setDocSubtitle{Requirements for the LSST Data Quality Assessment Framework}
 \author{Tony Tyson, DQA Team, and Science Collaboration}
-\date{2011-07-31}
+\date{2017-05-17}
 \setDocRef{LSE-63}
-
-\setDocStatus{Released}
-\setDocRevision{7}
 
 \setDocAbstract{
 LSST must supply trusted petascale data products. The mechanisms by which the LSST project achieve this unprecedented level of data quality will have spinoff to data-enabled science generally. This document specifies high-level requirements for a LSST Data Quality Assessment
-Framework, and defines the four levels of quality assessment (QA) tools. Because this process involves system-wide hardware and software, data QA must be defined at the System level. The scope of this document is limited to the description of the overall framework and the general requirements. It derives from the LSST Science Requirements Document \citeds{LPM-17}. A flow-down document will describe detailed implementation of the QA, including the algorithms.  In most cases the monitoring strategy, the development path for these tools or the algorithms are known. Related documents are: LSST System Requirements \citeds{LSE-29}, Optimal Deployment Parameters \citeds{Document-11624}, Observatory System Specifications \citeds{LSE-30}, Configuration Management Plan \citeds{LPM-19}, Project Quality Assurance Plan \citeds{LPM-55}, Software Development Plan \citeds{LSE-16}, Camera Quality implementation Plan \citeds{LCA-227}, System Engineering Management Plan \citeds{LSE-17}, and the Operations Plan \citeds{LPM-73}.
+Framework, and defines the four levels of quality assessment (QA) tools. Because this process involves system-wide hardware and software, data QA must be defined at the System level. The scope of this document is limited to the description of the overall framework and the general requirements. It derives from the LSST Science Requirements Document \citedsp{LPM-17}. A flow-down document will describe detailed implementation of the QA, including the algorithms.  In most cases the monitoring strategy, the development path for these tools or the algorithms are known. Related documents are: LSST System Requirements \citedsp{LSE-29}, Optimal Deployment Parameters \citeds{Document-11624}, Observatory System Specifications \citedsp{LSE-30}, Configuration Management Plan \citedsp{LPM-19}, Project Quality Assurance Plan \citedsp{LPM-55}, Software Development Plan \citedsp{LSE-16}, Camera Quality implementation Plan \citedsp{LCA-227}, System Engineering Management Plan \citedsp{LSE-17}, and the Operations Plan \citedsp{LPM-73}.
 }
 
 % Change history defined here. Will be inserted into
@@ -25,6 +22,9 @@ Framework, and defines the four levels of quality assessment (QA) tools. Because
 \addtohist{5}{2011-07-10}{General edits}{Tony Tyson}
 \addtohist{6}{2011-07-15}{Added content}{Tony Tyson}
 \addtohist{7}{2011-07-31}{Added content}{Tony Tyson}
+\addtohist{}{2017-04-13}{Modernize style. Use BibTeX}{Tim Jenness}
+\addtohist{}{2017-04-16}{Update content}{Tony Tyson}
+\addtohist{7.1}{2017-05-17}{Implementation of LCR-943.}{Tim Jenness}
 }
 
 \begin{document}
@@ -32,7 +32,7 @@ Framework, and defines the four levels of quality assessment (QA) tools. Because
 
 \section{Introduction}
 
-With coverage of twenty billion objects, the LSST survey will enable breakthroughs due to the unprecedented precision of statistical studies, as well as the opening of the faint time domain. The vast amount of LSST data is a result of the required precision of the measurements and the required time-volume space coverage, driven by the novel science. Virtually all scientists who interact with the LSST data will make use of the photometric database (catalog) of objects and the measurements of their time behavior. Thus, these quantities must have a precision that is well characterized.  In statistical investigations there is always a tradeoff between completeness and precision. Different investigations usually favor different places along this relation.  Indeed the broad range of LSST science recounted in the Science Book spans the extremes. Some science relies more on completeness, some more on precision. Thus it will be necessary to accurately characterize this completeness-precision space for the data releases as well as in real time. Subtle sample selection effects as well as systematic errors will affect data quality. The current generation of surveys have often addressed systematic errors after the fact, during data analysis post data release. For LSST much of this understanding will emerge from explorations of the end-to-end simulations during R\&D and construction.  During operations the system will be designed to discover, report, and mitigate unanticipated errors and systematic effects.  Understanding data quality issues to unprecedented levels prior to data release is for LSST an imperative.
+With coverage of twenty billion objects, the LSST survey will enable breakthroughs due to the unprecedented precision of statistical studies, as well as the opening of the faint time domain. The vast amount of LSST data is a result of the required precision of the measurements and the required time-volume space coverage, driven by the novel science. Virtually all scientists who interact with the LSST data will make use of the photometric database (catalog) of objects and the measurements of their time behavior. Thus, these quantities must have a precision that is well characterized.  In statistical investigations there is always a trade-off between completeness and precision. Different investigations usually favor different places along this relation.  Indeed the broad range of LSST science recounted in the Science Book \citep{2009arXiv0912.0201L} spans the extremes. Some science relies more on completeness, some more on precision. Thus it will be necessary to accurately characterize this completeness-precision space for the data releases as well as in real time. Subtle sample selection effects as well as systematic errors will affect data quality. The current generation of surveys have often addressed systematic errors after the fact, during data analysis post data release. For LSST much of this understanding will emerge from explorations of the end-to-end simulations during R\&D and construction.  During operations the system will be designed to discover, report, and mitigate unanticipated errors and systematic effects.  Understanding data quality issues to unprecedented levels prior to data release is for LSST an imperative.
 
 Because errors in any part of the system can affect data quality, there is a need to obtain timely data quality information on the instrumental behavior of the Observatory, and to assist in the support of its maintenance. Since the LSST has only a single instrument, uptime concerns for the camera and the data system are paramount, and so it is important to support not only a basic level of detection of actual failures, but also to perform predictive maintenance, i.e., trend analysis on instrumental performance.
 
@@ -61,7 +61,7 @@ extensive development of a comprehensive Data Quality Assessment Framework (DQAF
 In summary, the LSST DQAF must be developed and validated prior to the commissioning
 period. DQAF needs to rely heavily on automated data analysis methods (such as data mining
 techniques for finding patterns in large datasets, and various machine learning regression
-techniques), and to be supported by modern data visualization tools. LSST is considered to be a lighthouse project for data-enabled science.  It is likely that progress in developing tools and infrastructure for automated data quality assessment will have spinoff to eScience generally. Already, exciting progress is being made on database technology that will have wide application.
+techniques), and to be supported by modern data visualization tools. LSST is considered to be a lighthouse project for data-enabled science.  It is likely that progress in developing tools and infrastructure for automated data quality assessment will have spin-off to e-Science generally. Already, exciting progress is being made on database technology that will have wide application.
 
 The data processing software development process must include a full spectrum of QA/QC procedures, including design guidelines, code reviews, robust unit tests and coverage analysis, issue tracking, and system tests using a combination of simulated and - when available - real data from the Observatory.  Software releases must be accepted through these procedures before installation in the production system. The LSST Software Development Plan outlines some of the processes envisioned, and these will continue to be elaborated during the Final Design phase of the project.
 
@@ -83,7 +83,7 @@ The LSST DQAF will include four main components, which to some extent reflect
 the Level 1-3 structure of LSST data products.  Level 0 QA is software development related, Level 1 QA relates to nightly operations, Level 2 QA relates to data releases, and Level 3 QA is science based.
 
 \begin{itemize}
-\item {\bf Level 0 QA} includes the extensive and thorough testing of the DM subsystem
+\item \textbf{Level 0 QA} includes the extensive and thorough testing of the DM subsystem
 during the pre-commissioning phase, as well as the tests of software improvements
 during the commissioning and operations phases (regression tests based on pipeline
 outputs and input truth). A common feature of Level 0 QA is
@@ -95,11 +95,12 @@ completeness and false positive rate for an object finder; to measure the impact
 blended sources on pipeline outputs; to measure the performance of calibration pipelines
 and MOPS), and to test for algorithm implementation problems (a.k.a. ``coding bugs'').
 
-The whole system will be put to the test by processing the full set of one of the current big surveys (e.g., Pan STARRS1, SkyMapper). Running one of these full data sets through, setting up the photometric system, and getting the alerts out will truly test the system.
+The whole system will be put to the test by processing the full set of one of the current big surveys (e.g., DES, HSC). Running one of these full data sets through, setting up the photometric system, and getting the alerts out will truly test the system.
+ComCam will play an important role as an end-to-end test within the LSST system.
 It is important to emphasize that the successful completion of Level 0 tests is a necessary
 but not sufficient condition for software acceptance. The Level 0 QA is a component of the comprehensive software QA/QC procedures envisioned in the LSST Software Development Plan, as mentioned above.
 
-\item {\bf Level 1 QA} assesses the system status and data quality in real time during
+\item \textbf{Level 1 QA} assesses the system status and data quality in real time during
 commissioning and operations. Its
 main difference compared to other observatory, telescope, and camera status reporting
 tools will be heavy reliance on the massive science imaging data stream (in addition to various
@@ -113,7 +114,7 @@ in a better position to discover and characterize subtle deterioration in system
 that might not be easily caught by tools employed by the telescope
 and the camera subsystems for self-reporting purposes. Level 1 QA also contributes to the Observatory's hardware performance monitoring and predictive maintenance capabilities.
 
-\item {\bf Level 2 QA} assesses the quality of data products scheduled for the Data Releases,
+\item \textbf{Level 2 QA} assesses the quality of data products scheduled for the Data Releases,
 and provides quantitative details about data quality for each release (including the co-added image
 data products, and the properties of astrometrically and photometrically variable objects).
 This level also performs quality assessment for astrometric and photometric calibration,
@@ -121,7 +122,7 @@ as well as for derived products, such as photometric redshifts for galaxies and
 various photometric estimators for stars. Subtle problems with the image processing pipelines
 and systematic problems with the instrument will be discovered with Level 2 QA.
 
-\item {\bf Level 3 QA} quality assessment will be based on science analysis performed
+\item \textbf{Level 3 QA} quality assessment will be based on science analysis performed
 by the LSST Science Collaborations and other interested parties. Common features for
 tools at this level are sensitivity to subtle systematic issues not recognized by Level 2
 QA, and feedback about data quality to the project by external teams. It is envisioned
@@ -133,7 +134,7 @@ samples unavailable to the project at the time of Data Release, comparison of ph
 calibration with data from other large-area deep optical surveys, massive statistical
 analysis of systematic errors in image shape measurements, comparison of
 trigonometric and parallax measurements to catalogs from the Gaia mission, and
-the use of followup observations of transients to assess the quality of the LSST real-time
+the use of follow-up observations of transients to assess the quality of the LSST real-time
 classification engine.
 \end{itemize}
 
@@ -173,13 +174,13 @@ number of objects in the sample. These properties enable numerous statistical me
 for QA purposes. For example, very subtle systematic effects can be discovered by appropriately binning
 data along ``interesting axes''  (e.g., a photometric bias as small as a few millimag, or anomalous
 photometric noise, produced by a particular CCD, or amplifier, can be discovered by binning the differences
-between individual measurements and their average values by CCD coordinates).  The ability for users to be able to specify the functional forms of those ``interesting axes'' would be very useful.   User tools will be developed and available for creating additional functional forms that describe or produce the ``interesting" quantities.  In general, the relevant
+between individual measurements and their average values by CCD coordinates).  The ability for users to be able to specify the functional forms of those ``interesting axes'' would be very useful.   User tools will be developed and available for creating additional functional forms that describe or produce the ``interesting'' quantities.  In general, the relevant
 quantities that could drive systematic errors come in three flavors:
 \begin{itemize}
 \item Observing conditions (airmass, hour angle, seeing, sky brightness, photometricity, wind conditions);
-\item Instrumental parameters and behavior (CCD coordinates, camera rotator angle, telescope elevation, system
+\item Instrumental parameters and behavior (CCD coordinates, CCD clock voltages, camera rotator angle, telescope elevation, system
          temperature);
-\item Object properties (brightness, colors, extendedness, sky position in ecliptic and galactic coordinates).
+\item Object properties (brightness, colors, extendedness, shape, sky position in ecliptic and galactic coordinates).
 \end{itemize}
 
 
@@ -247,7 +248,7 @@ An efficient way to convince external science teams to adopt, use, and contribut
 the project-level QA effort is to provide timely and user-friendly documentation about the
 Level 1 and 2 tools. Data exploration tools should be made available to the community on an open-source basis.
 
-LSST will produce large volumes of science data, largely precluding discovery of unanticipated anomalies by humans.  The Data Management System produces derived products for scientific use both during observing (i.e. alerts and supporting image and source data) and in daily and periodic reprocessing.  The periodic reprocessing also results in released science products. Analysis of the nightly data will also provide insight into the health of the telescope/camera system.  However, by their very nature unanticipated anomalies cannot be efficiently discovered; one cannot write code to filter for something that is unanticipated. Yet it is just such ``unknown unknowns" that can form either a major scientific discovery or (if they correspond to errors in the system) the misinterpretation of the science data.  An automated data quality assessment system must include efficient searches for outliers in image data and unusual correlations of attributes in the database. This will involve aspects of data mining.  Algorithms already exist for this kind of automated data quality assessment: spatio-temporal anomaly detection, and hyperspace cluster detection.
+LSST will produce large volumes of science data, largely precluding discovery of unanticipated anomalies by humans.  The Data Management System produces derived products for scientific use both during observing (i.e. alerts and supporting image and source data) and in daily and periodic reprocessing.  The periodic reprocessing also results in released science products. Analysis of the nightly data will also provide insight into the health of the telescope/camera system.  However, by their very nature unanticipated anomalies cannot be efficiently discovered; one cannot write code to filter for something that is unanticipated. Yet it is just such ``unknown unknowns'' that can form either a major scientific discovery or (if they correspond to errors in the system) the misinterpretation of the science data.  An automated data quality assessment system must include efficient searches for outliers in image data and unusual correlations of attributes in the database. This will involve aspects of data mining.  Algorithms already exist for this kind of automated data quality assessment: spatio-temporal anomaly detection, and hyperspace cluster detection.
 Hints of a problem often come from anomalies in distributions.  Variations around the mean values of measured parameters as a function of altitude and azimuth are an example.
 Finally, managing and testing new software builds will depend on efficient transfer of data between the production and development pipeline. The development systems will be tested on actual data from the production or operational pipeline. It is essential to ensure the development and operations teams have adequate and frequent communication.
 
@@ -259,6 +260,7 @@ method and production system that will be used to test whether or not they are f
 a given data set. Each level of DQA must be accompanied by an additional defined set of metrics which will assure that
 the DQA tasks are themselves being carried out effectively. In many cases these metrics will involve
 automated tests running in the background.
+For example, one method of validation is to inject anomalies into the data and measure the DQA recovery efficiency.
 
 A test of this meta-metric is whether the LSST is meeting its overall scientific objectives.  This is assessed at regular intervals (Operations Plan \citeds{LPM-73}), and the LSST Science Collaborations are preparing to push the envelope early in commissioning and operations. Indeed the most challenging goals discussed in the Science Book require unprecedented control of systematics and/or the development of novel informatics and data search algorithms. It is in these areas, briefly reviewed below,  that DQA will be most critical.
 
@@ -266,856 +268,41 @@ A test of this meta-metric is whether the LSST is meeting its overall scientific
 
 \section{Some Challenges and Opportunities}
 
-Below we list three challenging areas for LSST DQA which were identified by the LSST project and by the Astro-2010 Decadal Survey review process. A common feature of these three examples is that they combine measurements from different filters for a large number of objects and across a large sky area, and thus enable discovery of subtle systematics that may go unnoticed when considering individual objects. Each of these is the subject of current R\&D, and it is expected that robust algorithms will be implemented during construction.  The job for automated DQA will be to monitor the performance of these algorithms by subjecting them to frequent tests. These tests may take the form of injected events or objects in the LSST imaging data, or comparison of LSST object properties in the LSST database with external deeper data in selected areas (such as HST imaging).
+Below we list three challenging areas for LSST DQA which were identified by the LSST project and by the Astro-2010 Decadal Survey review process. A common feature of these three examples is that they combine measurements from different filters for a large number of objects and across a large sky area, and thus enable discovery of subtle systematics that may go unnoticed when considering individual objects. Each of these is the subject of current R\&D on the Project and in the LSST Science Collaborations, and it is expected that robust algorithms will be implemented during construction.  The job for automated DQA will be to monitor the performance of these algorithms by subjecting them to frequent tests. These tests may take the form of injected events or objects in the LSST imaging data, or comparison of LSST object properties in the LSST database with external deeper data in selected areas (such as HST imaging).
 
 \subsection{Achieving acceptably low false transient alert rate}
 
-The science mission places stringent demands on the LSST's ability to rapidly and accurately detect, characterize, and classify varying and transient objects and to achieve a low false alarm rate.  Here characterization means supplying object associated data for a source (photometric history, color, morphology, motion) and metadata (system status, etc) which could be used in classification of the object.  Given the very high data volume  produced by the LSST, the corresponding large number of detectable sources in each  image (up to one million objects per visit), as well as the  likelihood of entirely new classes of transients, the LSST will not be able  to rely on traditional labor-intensive validation of detections,  classifications, and alerts.  It is estimated that over one million transient alerts, including moving objects and variable stars, will be issued per night of LSST operations. While automated tools will be developed for data quality assessment, it is likely that visual checks of highly unusual events and spot checks of routine events will be required to enhance the reliability of the alerts.  Routine checks that the alert pipeline is working normally and generating alerts within specifications will also be required.
+The science mission places stringent demands on the LSST's ability to rapidly and accurately detect, characterize, and classify varying and transient objects and to achieve a low false alarm rate.  Here characterization means supplying object associated data for a source (photometric history, color, morphology, motion) and metadata (system status, etc) which could be used in classification of the object.  Given the very high data volume  produced by the LSST, the corresponding large number of detectable sources in each  image (up to one million objects per visit), as well as the  likelihood of entirely new classes of transients, the LSST will not be able  to rely on traditional labor-intensive validation of detections,  classifications, and alerts.  It is estimated that about ten million transient alerts, including moving objects and variable stars, will be issued per night of LSST operations. While automated tools will be developed for data quality assessment, it is likely that visual checks of highly unusual events [alerted by the automated DQA system] and spot checks of routine events will be required to enhance the reliability of the alerts.
+These explorations will benefit from user friendly data exploration software which enables rapid correlation of user defined parameters in a selected sub-set of the high dimensional data, across multiple dimensions.
+Routine checks that the alert pipeline is working normally and generating alerts within specifications will also be required.
 
-Characterization and preliminary object classification will be relatively straight forward for many sources, depending on how much time and wavelength coverage exists at the time of detection. The SRD requires tools enabling some level of classification as part of Alert Production:  ``The users will have an option of a query-like pre-filtering of this data stream in order to select likely candidates for specific transient type. Several pre-defined filters optimized for traditionally popular transients, such as supernovae and microlensed sources, will also be available.''  Of course it is likely that scientific discoveries will exist in the tails of these distributions as well as in unexpected parts of this multi-dimensional space.  LSST will enlarge time-volume space by roughly a factor of 1000 over existing surveys, leading to the exciting prospect of discovery of new classes of objects.  We must be ready for this discovery of the unexpected, and enable an efficient process of classification of transient sources.  Of course some of these "unknown unknowns" may turn out to be errors in the LSST system, the detection and characterization of which is an imperative.  Pursuing this via Levels 0-3 will help assure a low false alert rate. By ``false" we mean either false positives (for example from pieces of diffraction spikes or H$II$ regions in spiral arms) or false negatives. Automated monitoring of relevant system and data stream parameters, including efficiency of recovery of artificial events, will form the first line of defense against false alerts. Examples from current time domain surveys are the effects of known noisy areas of the focal plane, or detection of anomalous distributions in system metadata.
+Characterization and preliminary object classification will be relatively straight forward for many sources, depending on how much time and wavelength coverage exists at the time of detection. The SRD requires tools enabling some level of classification as part of Alert Production:  ``The users will have an option of a query-like pre-filtering of this data stream in order to select likely candidates for specific transient type. Several pre-defined filters optimized for traditionally popular transients, such as supernovae and microlensed sources, will also be available.''  Of course it is likely that scientific discoveries will exist in the tails of these distributions as well as in unexpected parts of this multi-dimensional space.  LSST will enlarge time-volume space by roughly a factor of 1000 over existing surveys, leading to the exciting prospect of discovery of new classes of objects.  We must be ready for this discovery of the unexpected, and enable an efficient process of classification of transient sources.  Of course some of these ``unknown unknowns'' may turn out to be errors in the LSST system, the detection and characterization of which is an imperative.  Pursuing this via Levels 0-3 will help assure a low false alert rate. By ``false'' we mean either false positives (for example from pieces of diffraction spikes or H$II$ regions in spiral arms) or false negatives. Automated monitoring of relevant system and data stream parameters, including efficiency of recovery of artificial events, will form the first line of defense against false alerts. Examples from current time domain surveys are the effects of known noisy areas of the focal plane, or detection of anomalous distributions in system metadata.
 
 To achieve the levels of accuracy required, new algorithms for detection and classification must be created, as well as innovative automated techniques for alert filtering and validation.  While not currently planned as part of the LSST data releases, the LSST project together with the science collaborations must push development of classification during R\&D to ``proof of principle.''  As an example, simple machine learning and dimensional reduction algorithms are being developed by the Palomar Transient Factory collaboration \citep{2012PASP..124.1175B}.  These achieve efficiency through dimensional reduction. At greater than 96\% classification efficiency, their samples achieve 90\% purity by relying primarily on context-based features. Validated algorithms for automated detection of new types of transients should be part of level 2 DQA. This will form a second line of defense against false alerts. During operations the statistics of object classifications (and reclassifications) will be an important data quality diagnostic.
+The Zwicky Transient Factory will serve as a resource for test and development of these algorithms.
 
 \subsection{Photometric redshift systematics}
 
-One of the challenges in next generation sky surveys such as LSST is solving inverse problems using multi-dimensional petabyte databases. A key example of dimensional reduction is photometric redshifts: estimating redshifts of billions of galaxies based on many dimensional information (colors, brightness, sizes, and shapes). Multi-wavelength imaging photometry can be used to estimate the redshifts of every galaxy.  This enables moderately narrow redshift intervals to be isolated so that distances (via the Hubble expansion) and the growth of structure can charted as a function of cosmic time.  The use of photometric redshifts does, however, come with an associated challenge, one that is common in all inversion problems: the data are both noisy and incomplete (i.e., we do not have access to the full spectral energy distributions of all galaxies within a data set). The physics of photometric redshift determination implies that the measurement error distribution for redshifts has very long non-Gaussian tails. So called ``catastrophic photo-z errors" are primarily caused by inappropriate galaxy type assignments resulting is the use of the wrong spectral energy distribution (SED). An issue of particular relevance to LSST is that little is known about the evolution of SEDs at higher redshifts for some types of galaxies.
+One of the challenges in next generation sky surveys such as LSST is solving inverse problems using multi-dimensional petabyte databases. A key example of dimensional reduction is photometric redshifts: estimating redshifts of billions of galaxies based on many dimensional information (colors, brightness, sizes, and shapes). Multi-wavelength imaging photometry can be used to estimate the redshifts of every galaxy.  This enables moderately narrow redshift intervals to be isolated so that distances (via the Hubble expansion) and the growth of structure can be charted as a function of cosmic time.  The use of photometric redshifts does, however, come with an associated challenge, one that is common in all inversion problems: the data are both noisy and incomplete (i.e., we do not have access to the full spectral energy distributions of all galaxies within a data set). The physics of photometric redshift determination implies that the measurement error distribution for redshifts has very long non-Gaussian tails. So called ``catastrophic photo-z errors'' are primarily caused by inappropriate galaxy type assignments resulting is the use of the wrong spectral energy distribution (SED). An issue of particular relevance to LSST is that little is known about the evolution of SEDs at higher redshifts for some types of galaxies.
 
-Systematic errors in photometric redshift propagate to errors in cosmological parameters \citep{2011ApJ...734...36A}. The principal components for understanding the impact of photometric redshifts are: estimating and minimizing systematics through the use of priors, calibration of the photometric redshift relation using spectroscopic training sets and by angular cross correlation between spectroscopic and photometric survey data, and characterizing the statistical uncertainties due to spatial and temporal variations in the survey progress.  Photometric zero point errors \citep{2010SPIE.7737E..1FJ} which vary across the sky can propagate to systematic errors in some cosmological parameters. Because LSST will cover different parts of the sky at different times, continuous automated DQA will be implemented for these metrics. As mentioned above, monitoring derived parameters as a function of other variables, such as position in the sky or system parameters, is an important activity for Level 2 and 3 QA.
+Systematic errors in photometric redshift propagate to errors in cosmological parameters \citep{2011ApJ...734...36A}. The principal components for understanding the impact of photometric redshifts are: estimating and minimizing systematics through the use of priors, calibration of the photometric redshift relation using spectroscopic training sets and by angular cross correlation between brighter spectroscopic and fainter photometric survey data, and characterizing the statistical uncertainties due to spatial and temporal variations in the survey progress.  Photometric zero point errors \citep{2010SPIE.7737E..1FJ} which vary across the sky can propagate to systematic errors in some cosmological parameters. Because LSST will cover different parts of the sky at different times, continuous automated DQA will be implemented for these metrics.
+An additional challenge for photometric redshifts is blending of barely resolved multiple galaxies; thus the LSST de-blender algorithm must have reasonable efficiency for tagging blends at the i = 25.3 mag limit of the LSST main survey ``Gold Sample'' of galaxies.
+Systematic errors in galaxy color morphology vs those of stars occur at high airmass, and algorithms which leverage these spatio-color correlations will be helpful.
+As mentioned above, monitoring derived parameters as a function of other variables, such as position in the sky or system parameters, is an important activity for Level 2 and 3 QA.
 
 \subsection{Weak lens shear systematics}
 
-Mapping dark matter and probing dark energy [two prime science drivers for LSST] make use of the weak gravitational lens shear of background galaxies by foreground mass structures. Measurements of cosmic shear correlate the shapes (shears) of pairs of galaxies separated on the sky.  Cross correlations between galaxy shears in different redshift samples (cosmic shear tomography) is a sensitive diagnostic of cosmology when combined with correlations of the galaxy locations (baryon acoustic oscillations). The hemisphere sky coverage of LSST is needed in order to achieve the required statistical precision in these shear correlations, and to suppress cosmic variance.  For the LSST ``gold'' sample of 4 billion galaxies, the resulting random component of the shear cross correlation noise level is about $3\times10^{-7}$ over an angular range up to several degrees.  It is thus important that the systematic component be less than about 30\% of this noise.  The requirement then is that the galaxy shear extraction algorithm (and system hardware) be capable of delivering this level of galaxy shear systematics residual.  Because of the stochastic nature of galaxy shape shot noise, the shear errors in a large sample are dominated by PSF errors at the galaxy positions (together with errors in model fitting, given the PSF).
+Mapping dark matter and probing dark energy [two prime science drivers for LSST] make use of the weak gravitational lens shear of background galaxies by foreground mass structures. Measurements of cosmic shear correlate the shapes (shears) of pairs of galaxies separated on the sky.  Cross correlations between galaxy shears in different redshift samples (cosmic shear tomography) as a function of angular separation on the sky is a sensitive diagnostic of cosmology when combined with correlations of the galaxy locations (baryon acoustic oscillations). The hemisphere sky coverage of LSST is needed in order to achieve the required statistical precision in these shear correlations, and to suppress cosmic variance.  For the LSST ``gold'' sample of 4 billion galaxies, the resulting random component of the shear cross correlation noise level is about $3\times10^{-7}$ over an angular range up to several degrees.  It is thus important that the systematic component be less than about 30\% of this noise.  The requirement then is that the galaxy shear extraction algorithm (and system hardware) be capable of delivering this level of galaxy shear systematics residual.  Because of the stochastic nature of galaxy shape shot noise, the shear errors in a large sample are dominated by PSF errors when extrapolated to the galaxy positions (together with errors in model fitting, given the PSF).
+Stars whose core flux is brighter than the galaxies in the weak lens sample are used for PSF measurement.
+However, thick fully-depleted CCD exhibit a ``brighter-fatter'' PSF effect, changing pixel shapes, locations, and sizes on and near these PSF calibration stars.
+This could be removed by the pixel processing pipeline by implementing corrections based on CCD device physics models of sufficient accuracy to enable on-sky updates of parameters, or using a well-calibrated empirical model.
 
-Faint galaxy shear is thus contaminated by PSF variations. The PSF must be precisely mapped for each exposure and for each CCD. The spectrum of PSF residuals for up to 20,000 stars per pointing will be monitored, and is an important diagnostic of data quality. Consistency with the wavefront sensing solution will be another diagnostic.  During R\&D, power spectrum analyses of the seeing distribution in simulated LSST observations will model the impact on the cosmic shear power spectrum.  Several algorithms have been suggested to reduce PSF systematics in galaxy shear extraction using multiple exposures of the same field.  The naive use of such data would be to construct a single ``co-added" image with higher signal-to-noise, and then measure the shear correlation function by averaging over all pairs of galaxies.  The LSST lens pipeline will more likely analyze the full ``data cube" by fitting, for each galaxy, a single model which best matches the $n$ measurements of that galaxy in the survey, when convolved separately with the $n$ corresponding PSFs (the $MultiFit$ method, under development). A faster algorithm (called $StackFit$) co-adds the $n$ weighted PSF eigenfunctions and fits a model to the co-added galaxy image \citep{2011PASP..123..596J}.
+Faint galaxy shear is thus contaminated by PSF variations. The PSF must be precisely mapped for each exposure and for each CCD. The distribution of PSF residuals for up to 20,000 stars per pointing will be monitored, and is an important diagnostic of data quality. Consistency with the wavefront sensing solution will be another diagnostic.
+Several algorithms have been suggested to reduce PSF systematics in galaxy shear extraction using multiple exposures of the same field.  The naive use of such data would be to construct a single ``co-added'' image with higher signal-to-noise, and then measure the shear correlation function by averaging over all pairs of galaxies.  The LSST lens pipeline will more likely analyze the full ``data cube'' by fitting, for each galaxy, a single model which best matches the $n$ measurements of that galaxy in the survey, when convolved separately with the $n$ corresponding PSFs (the $MultiFit$ method, under development). A faster algorithm (called $StackFit$) co-adds the $n$ weighted PSF eigenfunctions and fits a model to the co-added galaxy image \citep{2011PASP..123..596J}.
 
-Automated statistics of galaxy-by-galaxy consistency of the shear should provide powerful metrics of shear systematics.  An example is automated calculation of a shear cross correlation called ``B-mode" which in the absence of systematic PSF errors should be zero. We should expect to detect some sky tiling effects on weak lens shear systematics due to residuals from PSF corrections at the field edges of overlapping visits taken under different seeing conditions. Achieving the cosmology promise of LSST will require strict control of systematic errors on large scales. Repeatability of shear patterns on revisits and in overlapped dithered exposures will be a useful Level 3 metric.
+Automated statistics of galaxy-by-galaxy consistency of the shear should provide powerful metrics of shear systematics.  An example is automated calculation of a shear cross correlation called ``B-mode'' which in the absence of systematic PSF errors should be zero. We should expect to detect some sky tiling effects on weak lens shear systematics due to residuals from PSF corrections at the field edges of overlapping visits taken under different seeing conditions. Achieving the cosmology promise of LSST will require strict control of systematic errors on large scales. Repeatability of shear patterns on revisits and in overlapped dithered exposures will be a useful Level 3 metric.
+Special dithering during observing will help suppress PSF shear systematics, by rotating the camera in addition to x-y dithering and observing the same area at various HA such that a full 180 decrease is covered over the full re-visit sample. This is discussed in the recent LSST Observing Strategy whitepaper.  %  \citep{  }
 
 \bibliography{lsst,refs_ads}
-
-\end{document}
-
-
-
-
-
-
-
-\author{Tim Axelrod}
-\author{Robert Lupton}
-\author{Dick Shaw}
-\author{Tony Tyson}
-\author{Jeff Kantor}
-
-\section{Introduction}
-
-\{v}Zeljko was here.
-
-This document specifies data quality requirements for the data
-products produced by the LSST Data Management System.  These products
-are discussed more fully in (document-xxx ``Summary of the LSST Data
-Management System'').
-
-Science breakthroughs enabled by LSST will be to a large degree based on the precision of the measurements during the course of the survey.  The data quality assessment needs are thus different in kind and level of effort compared with current standards – a direct result of the new regimes LSST opens.  There are three novel aspects compared with current astronomy surveys and big data in science generally:
-
-\begin{itemize}
-\item Vastly larger data volumes (1000x) as well as data space (number of dimensions). While this creates its own unique challenges for DQA, it leads to another novel aspect and challenge:
-\item Vastly increased precision for cutting edge statistical investigations –  key LSST science – made possible by the large size of the database.
-\item Unprecedented coverage of the faint time domain opens the possibility of detection of the unexpected.  Pursuit of this exciting science opportunity hinges on innovating DQA in a new dimension.
-\end{itemize}
-
-The vast amount of LSST data is a result of the required precision of the measurements, driven by the novel science. In scientific investigations there is always a tradeoff between completeness and accuracy. Different investigations usually favor different places along this relation.  Indeed the broad range of LSST science recounted in the Science Book spans the extremes. Some science relies more on completeness, some more on precision. Thus it will be necessary to accurately characterize this completeness-precision space for the data releases as well as in real time. The current generation of surveys have often addressed systematic errors after the fact, during data analysis post data release. It is hoped that for LSST much of this understanding will emerge from explorations of the end-to-end simulations during R\&D and construction, and that during operations we will have to contend with the residuals and the unknown unknowns. Understanding this to unprecedented levels prior to data release is for LSST an imperative. Finally there is the inevitable flood of transient object detections and alerts, which calls for accompanying metadata capable of generating event classifications: this must be monitored and the tails of the distributions understood. All this calls for a radically new approach to DQA, with the following elements:
-
-\begin{itemize}
-\item Automated (at least for known tasks).  Summaries, continuous monitoring of statistics, distributions, and trends.
-\item Expert human monitoring and interpretation of these ADQA products.
-\item Metadata-Data exploration tools.  Visualization, and rapid efficient drill-down query capability.
-\item Selected projects which use the data to push the envelope, thus encountering residual systematic errors.
-\item Continuous calibration of completeness-precision: injection of artificial signals at all levels.
-\end{itemize}
-
-The optimal algorithms that will be designed for processing of LSST data will themselves be sensitive to system efficiency, robustness, and changing observing conditions. ADQA must monitor these parameters and their statistical distributions in order to assure that the synoptic aspect of the LSST data is of the highest quality.  Examples include subtle variations across the sky in signal-to-noise, and variations in efficiency in the time domain.  Here are a few examples:
-
-\subsection{Adaptive retuning of algorithm behavior}
-
-Several key algorithms employed in the LSST application pipelines are complex, containing many data-dependent decisions and a large number of tuning parameters that affect their behavior.  As observing conditions change, an algorithm may begin to fail for a particular choice of tuning parameters.   Petascale data volumes make human intervention in such cases impractical, but it is essential that the pipelines continue to function successfully.
-
-\subsection{Automated Discovery}
-
-Spatio-temporal anomaly detection, hyperspace cluster detection and automated data quality assessment.  LSST will produce large volumes of science data.  The Data Management System (DMS) produces derived products for scientific use both during observing (i.e. alerts and supporting image and source data) and in daily and periodic reprocessing.  The periodic reprocessing also results in released science products. Analysis of the nightly data will also provide insight into the health of the telescope/camera system.  An automated data quality assessment system must be developed, which efficiently searches for outliers in image data and unusual correlations of attributes in the database. This will involve aspects of machine learning.
-
-
-
-\section{Metrics and Methods}
-
-
-
-\section{Validation Methods}
-
-Data quality requirements are not useful unless associated with a
-method that will be used to test whether or not they are fulfilled in
-a given data set.  We will use several validation methods:
-\begin{itemize}
-\item Simulated image inputs (denoted by S)
-\item Injection of artificial objects (these two are related, but
-  different) (denoted by A)
-\item Direct measurement, eg of the width of a distribution (denoted
-  by D)
-\end{itemize}
-
-Each requirement below is tagged with the validation approach(es) to
-be utilized for its measurement.
-
-\section{Requirements for Exposures}
-\subsection { General requirements }
-All Exposures have common requirements for data integrity and metadata completeness.
-\subsection { Raw Exposures }
-Data integrity only, eg fraction of dropped images, bad pixel values.
-DM is not in control of data quality of raw exposures.
-
-\subsection { Processed Exposures (trimmed, debiased, flattened, etc) }
-
-\begin{itemize}
-\item Flatness
-\item Bad pixel identification efficiency
-\item Cosmic ray identification and removal
-\item Fringe removal
-\item World Coordinate System (WCS)
-\item Photometric Zeropoint
-\item Point Spread Function (PSF)
-\item Mask completeness
-\end{itemize}
-
-\subsection { Difference Exposures }
-
-\begin{itemize}
-\item Statistics:  difference exposures are supposed to be
-  'sky-like'. Need to constrain non-gaussian tail on pixel value
-  distribution.
-\item Residuals around bright unsaturated stars
-\end{itemize}
-
-\subsection { Combined Exposures }
-Discussion of general requirements - well behavedness of PSF, in
-particular continuity; representative sampling of position angles
-
-\subsubsection { Image Subtraction Template }
-
-\begin{itemize}
-\item PSF width:  to be less than xx\% of the width distribution of
-  the Exposures that have been used in its production
-\end{itemize}
-
-\subsubsection { Deep Detection Coadd }
-
-\subsubsection { Visualization Coadd }
-
-\begin{itemize}
-\item RGB quality?
-\end{itemize}
-
-\section{Requirements for Catalogs (aka Tables)}
-The following catalogs are updated through the nightly running of the
-Alert production.  With the exception of Exposure, they are all
-recreated from scratch during the production of each Data
-Release. The data quality requirements in some case are more stringent
-for the Data Release version, and when this is the case both
-requirements are noted.
-
-No explicit requirements are noted for items that are purely
-bookkeeping in nature, eg objectIds or exposureIds
-
-% Requirements for deblending (with separate table?)
-% Requirements to measure completeness (no numerical completeness requirements)
-\subsection { Overall Requirements }
-\paragraph {Deblending}
-The SRD makes no mention of deblending, the process of separating
-objects which are astrophysically distinct, but whose pixels overlap
-on the sky.  Many of the science cases in the LSST Science Book
-explicitly do require deblending, however.  These include:
-\begin{itemize}
-\item{Strong Lensing}
-\item{Galaxies}
-\begin{itemize}
-\item Needed for galaxy catalog (p. 314)
-\item Needed for structure of nearby galaxies (p. 314)
-\item LSB galaxies (p. 317, 321) Is this really a separate case?
-\item Mergers (p. 330)
-\item PN in nearby galaxies
-\end{itemize}
-\item{AGN}
-\item{Milky Way Structure}
-\end{itemize}
-
-Given this situation, it might make sense to consider deblending as
-part of Level 3, and therefore a task for the community rather than
-for DM.   It is a task which requires processing the entire pixel
-stream of the survey, however, and therefore, if it is to be
-done, it is essential that it be included in the DM system.  There are
-several factors which make it difficult to set requirements on the
-performance of the deblender:
-\begin{itemize}
-\item the desired result of the deblending depends on the science
-  being done.
-  \begin{itemize}
-  \item point source overlapping extended source
-  \item overlapping extended sources
-  \end{itemize}
-\item to be practical, an upper limit on the object angular size must
-  be set, and this is largely arbitrary.
-\item may need to set minimum color difference in at least one pair of bands
-\end{itemize}
-
-\paragraph{Completeness Measurement}
-Measurement of the completeness of the various tables is required for
-many science use cases.  This general discussion of the requirements
-for completeness measurement is supplemented when required by table
-specific requirements below.
-
-\paragraph{Fluxes}
-\begin{itemize}
-\item Note differing calibration of Alert and Data Release
-\item Units
-\item Fluxes are integrated over full object extent?
-\item Agreement between PS and SG fluxes in point source limit
-\end{itemize}
-
-\paragraph{Uncertainty Measurements}
-Can we say something about the requirement on the x\_Sigma quantities?
-The notion is that x\_Sigma should capture the real uncertainty in the
-quantity, preferably in the form of confidence limits.  Since the
-Object Table contains quantities that are averages over the survey,
-x\_Sigma should reflect the uncertainty in the mean of the quantity
-being measured.  Some quantities do not allow for such an
-interpretation, for example the Sersic parameters or the parallax.
-For these there is little alternative but to use a covariance estimate
-from the fitting routine.  Similar comments for x\_Cov quantities?
-
-We should have a uniform definition of what we mean by sigma - eg a
-confidence limit, or the width of a gaussian fit to the distribution.
-
-How will we handle propagating errors through pipelines? eg photometry
--> photoZ?
-
-And how will we handle columns that have correlated errors?
-
-Verify against sims initially, adjust as full survey data is accumulated
-
-\subsection {Exposure Table}
-Integrity only.  All quantities are either bookkeeping or gathered
-from primary sources with their own DQ requirements, eg WCS
-
-\subsection {Object Table}
-The Object Table has a row for every non-Solar-System astrophysical
-object found in the LSST images.  Each Object Table row has a set of
-columns which together summarize what has been measured for the object
-over the history of the survey.  The information contained in the
-Object Table is summarized in Table 1.
-
-\paragraph{Collective Requirements}
-
-\begin{itemize}
-\item Parallax accuracy (SRD SIGpara)
-\item Proper motion accuracy (SRD SIGpm, SIGparaRed)
-\end{itemize}
-
-\paragraph{Individual Column Requirements}
-The full Object Table definition is shown in Table 1.  Columns with
-specific data quality requirements are itemized here.
-
-NOTE: In the items below, (b) denotes the filter band: u, g, r, i, z,
-or y.
-
-\begin{itemize}
-\item ra\_PS, decl\_PS
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item ra\_SG, decl\_SG
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item muRa\_PS, muDecl\_PS
-Note that this one's accuracy will depend on duration of survey to date.
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item parallax\_PS
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item extendedness
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item varProb
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item (b)Extendedness
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item (b)VarProb
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item (b)Lnl\_PS
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item (b)Lnl\_SG
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item (b)Flux\_PS
-These fluxes need to be in some physical units - what? Jy??
-And, these are intended to be the total flux for the object?  Flux in
-some defined aperture??
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item (b)Flux\_SG
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item (b)Flux\_CSG
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item (b)Timescale
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item (b)SersicR\_SG, (b)SersicN\_SG
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item (b)Radius\_SG, E1\_SG, (b)E2\_SG
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item photoZ
-  \begin{itemize}
-  \item Metric:
-  \item Validation: S
-  \end{itemize}
-\item location in deblending graph
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\end{itemize}
-
-\subsubsection{Completeness Measurement}
-
-
-\subsection {MovingObject Table}
-
-% ref PS-MOPS?
-Solar system objects are detected in difference images as DIASources
-with positive flux.  These sources are then processed by the Moving
-Object Pipeline (MOPS), which links sources together into tracks of
-individual objects and determines orbits for them.  The LSST MOPS is
-derived from PanSTARRS MOPS \citep{MOPS} The orbital
-elements, and average photometric properties of the object are stored
-in the MovingObject Table.
-The information contained in the MovingObject Table is summarized in
-Table 2.
-
-Note that there will be occasions during nightly alert processing in
-which an Object with only a single associated measurement is
-subsequently found to be a measurement of a MovingObject.  In these
-relatively rare cases, the original Object will be deleted.
-
-All items are Validation Type S
-
-\begin{itemize}
-\item orbital elements
-\item h\_V
-\item g
-\item rotationPeriod
-\item rotationEpoch
-\item albedo [band??]
-\item polLat, poleLon
-\item d3
-\item d4
-\item orbFitResidual
-\item orbFitChi2
-\item (b)Mag
-\item (b)Amplitude
-\item (b)Period
-\item flag
-\item o\_minus\_c
-\item moid, moidLong1, moid2, moidLong2
-\end{itemize}
-
-\subsubsection{Completeness Measurement}
-
-
-\subsection {Source Table}
-
-\paragraph{Collective Requirements}
-The SRD imposes a number of requirements on the distributions of
-quantities in the Source table.  The metrics associated with these
-requirements can only be measured by DM, but the SRD requirements will
-be achievable by DM only if upstream requirements on the Camera and
-Telescope are met as well.
-\begin{itemize}
-\item Detection depth (SRD D1, DF1, Z1)
-\item Photometric repeatability (SRD PA1, PF1, PA2)
-  \begin{itemize}
-  \item Metric:  SRD PA1
-  \item Validation: M
-  \item Metric:  SRD PF1
-  \item Validation: M
-  \item Metric:  SRD PA2
-  \item Validation: M
-  \end{itemize}
-\item Photometric zeropoint spatial uniformity (SRD PA3, PF2, PA4)
-\item Band-to-band photometric calibration (SRD PA5)
-\item External absolute photometry (SRD PA6)
-\item Extended source photometry (SRD 'Further notes on photometry')
-\item Relative astrometry (SRD AM1, AF1, AD1, AM2, AF2, AD2, AM3, AF3,
-  AD3)
-\item Absolute astrometry (SRD AA1)
-\item PSF ellipticity distribution (SRD TE1, TE2, TEF, TE3, TE4)
-NOTE: this seems to mean we need more PSF info in Source table!
-\end{itemize}
-
-\paragraph{Individual Column Requirements}
-
-\begin{itemize}
-\item ra, decl
-\item xAstrom, yAstrom
-  \begin{itemize}
-  \item No greater than \%S1 * Cramer-Rao limit
-  \item Metric:
-  \item Validation: M (fitting of astrometric models to Objects); S
-\end{itemize}
-\item astromRefrRa, astromRefDecl
-  \begin{itemize}
-  \item Standard model for site.  No explicit DQ requirement
-  \end{itemize}
-\item sky ($ABmag/arcsec^2$)
-\item psfLnL
-\item lnL\_SG [inconsistent name form]
-\item flux\_PS
-\item flux\_SG
-\item flux\_CSG [does this make sense here??]
-\item extendedness
-\item galExtinction
-\item sersicN\_SG
-\item e1\_SG, e2\_SG, radius\_SG
-\item midPoint
-\item apCorrection
-\item grayExtinction
-\item nonGrayExtinction
-\item SedCorrection
-\item momentIx, momentIy, momentIxx, momentIyy, momentIxy
-\item flags
-\end{itemize}
-
-\subsection {DIASource Table}
-An entry in the DIASource Table is made as a result of a high SNR
-measurement of an Object in a difference Exposure. The information
-contained in the DIASource Table is summarized in Table 4.
-
-\paragraph{Individual Column Requirements}
-
-\begin{itemize}
-\item ra, decl
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item xAstrom, yAstrom
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item astromRefrRa, astromRefDecl
-  \begin{itemize}
-  \item Standard model for site.  No explicit DQ requirement
-  \end{itemize}
-\item sky [units??]
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item psfLnL
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item lnL\_SG [inconsistent name form]
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item flux\_PS
-\item flux\_SG
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item flux\_CSG [does this make sense here??]
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item extendedness
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item galExtinction
-  \begin{itemize}
-  \item Standard model (eg Schlegel).  No explicit DQ requirement
-  \end{itemize}
-\item sersicN\_SG
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item e1\_SG, e2\_SG, radius\_SG
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item midPoint
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item apCorrection
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item grayExtinction
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item nonGrayExtinction
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item momentIx, momentIy, momentIxx, momentIyy, momentIxy
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item flags
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\end{itemize}
-
-\subsubsection {Completeness Measurement}
-
-\subsection {ForcedSource Table}
-An entry in the ForcedSource Table is made in conjunction with a low
-SNR measurement of an Object either with Multifit or in a difference
-Exposure. The information contained in the FaintSource Table is
-summarized in Table 5.
-%include model prediction
-\paragraph{Individual Column Requirements}
-
-\begin{itemize}
-\item sky
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item flux\_PS
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item flux\_SG
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item flux\_CSG
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item psfLnL
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item modelPSLnL
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item modelSGLnl
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item flags
-\end{itemize}
-
-\subsection{Alerts}
-
-\begin{itemize}
-\item reliability - prob that Alert came from actual flux change in
-  astrophysical object
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item completeness
-  \begin{itemize}
-  \item Metric:
-  \item Validation:
-  \end{itemize}
-\item classification - explicitly NO requirement
-\end{itemize}
-
-\subsection{Calibration Products}
-The Calibration Products Production generates the full range
-of calibration products necessary for the functioning of the Alert and
-Data Release Productions.  The products include, on a
-per-filter basis when required:
-
-\subsubsection {Bias Exposures}
-\subsubsection {Monochromatic Dome Flat Exposures}
-\subsubsection {Broadband Dome Flat Exposures}
-\subsubsection {Pupil Ghost Image}
-\subsubsection {Crosstalk Correction Matrix}
-\subsubsection {Fringe Images}
-\subsubsection {Illumination Correction}
-\subsubsection {A variety of products required for the Auxiliary Telescope (TBD)}
-
-
-\section{Tables}
-% ---------------------------------------------------------------------------------------------------------------
-\begin{deluxetable}{|p{2.5in} | p{3in}|}
-\tablecaption{Object Table Contents}
-\tablewidth{0pt}
-\tablecolumns{2}
-\tabletypesize{\scriptsize}
-\startdata
-\tableline
-Unique ID for the object & The Id is used as a key to connect the Object with the rows in the various Source tables which are generated from measurements of the Object in individual Exposures. The ID is not preserved across DRs\\
-\tableline
-
-% spell out what this looks like
- IAU compliant name for the object & Example: ``LSST-DR2 J001234.65-123456.8''\\
-\tableline
-% BIG DECISION: save all model params in Object table?  Source table?
- Best fitting model type for the object & Several types of object
- model will be fit to the measurements (see Section 6.3 for
- details). This column specifies which model type gives the best
- fit. Note that the fit results from \emph{all} model fits are included below!  \\
-\tableline
- Multifit model parameters and covariance matrices for each fit model & The model parameters include the most important object parameters - mean position, fluxes, shape parameters.  See Section 6.3. \\
-\tableline
- Elliptical equivalent to object footprint & The ellipse which gives the same weighted moments as the object\\
-\tableline
-
-% bounding box needs to be defined
- Bounding box for object & The smallest box on the sky that fully encloses the object footprint. This is what you need for a postage stamp.  \\
-\tableline
-
- Average calibrated fluxes and errors in each filter & Definition still TBD for extended objects.  Especially for the Small Object Model, these may not be the same fluxes as given in the model parameters. \\
-\tableline
-
- Summary statistics for light curve variability & Still TBD.  At least give variance around best fitting constant.  Likely include Welch-Stetson statistics, or similar\\
-\tableline
-
- Summary statistics for image model residuals & Still TBD.  Goal is to provide useful parameters that can be selected on to find interesting objects such as lensing arcs \\
-\tableline
-
- Extendedness parameter & The likelihood that the object is a point source, possibly incorporating some nontrivial prior\\
-\tableline
-
- Photometric redshift and associated PDF & The reported photo-Z will be the peak of the PDF.  The full PDF will be included.\\
-\tableline
-
-% make deblending connection clear here
-Segmentation info & Relationship to other Objects which are part of the same segmentation (deblending) tree\\
-\enddata
-
-\end{deluxetable}
-% --------------------------------------------------------------------------------------------------------------------------
-
-\begin{deluxetable}{|p{2.5in} | p{3in}|}
-\tablecaption{MovingObject Table Contents}
-\tablewidth{0pt}
-\tablecolumns{2}
-\tabletypesize{\scriptsize}
-\startdata
-\tableline
-Unique ID for the object & The Id is used as a key to connect the MovingObject with the rows in the various Source tables which are generated from measurements of the Object in individual Exposures. The ID is not preserved across DRs\\
-\tableline
-
-% spell out what this looks like
- IAU/MPC compliant name for the object & Example: ``2015 EG1234567''\\
-\tableline
-Orbital elements & \\
-\tableline
-Average calibrated absolute magnitude in each band & \\
-\tableline
-Summary statistics for light curve variability & Still TBD.  \\
-\enddata
-\end{deluxetable}
-
-% ---------------------------------------------------------------------------------------------------------------
-\begin{deluxetable}{|p{2.5in} | p{3in}|}
-\tablecaption{Source Table Contents}
-\tablewidth{0pt}
-\tablecolumns{2}
-\tabletypesize{\scriptsize}
-\startdata
-\tableline
-Source ID & unique Id for this Source \\
-\tableline
-Object ID &  the Object associated with this Source\\
-\tableline
-MovingObject ID &  the MovingObject associated with this Source (note
-that one of Object ID and MovingObject ID is null)\\
-\tableline
-Exposure ID &  the Exposure from which this measurement was made \\
-\tableline
-SG model ellipse & includes position and shape; convolved with PSF for this Exposure\\
-\tableline
-SG model flux & \\
-\tableline
-SG model sky & \\
-\tableline
-SMPS model ellipse & includes position and shape; convolved with PSF for this Exposure \\
-\tableline
-SMPS model flux & \\
-\tableline
-SMPS model sky & \\
-\tableline
-Measured ellipse & independent of Multifit model\\
-\tableline
-Raw measured flux & independent of Multifit model\\
-\tableline
-Error in raw measured flux & independent of Multifit model\\
-\tableline
-Photometric calibration correction & specific to source location and
-SED, but not to shape\\
-\tableline
-Error in photometric calibration correction & \\
-\tableline
-Residual characterization & \\
-\tableline
-Extraction flags & specify problems that were encountered in processing this Source
-\enddata
-\end{deluxetable}
-% -----------------------------------------------------------------------------------------------------------------
-
-\begin{deluxetable}{|p{2.5in} | p{3in}|}
-\tablecaption{DIASource Table Contents}
-\tablewidth{0pt}
-\tablecolumns{2}
-\tabletypesize{\scriptsize}
-\startdata
-\tableline
-DIASource ID & unique Id for this Source \\
-\tableline
-Object ID & for the Object associated with this Source\\
-\tableline
-MovingObject ID & for the MovingObject associated with this Source (only one of Object ID and MovingObject ID will be set)\\
-\tableline
-Difference Exposure ID & for the Difference Exposure from which this measurement was made \\
-\tableline
-SS model predicted ellipse & only if MovingObject ID is set\\
-\tableline
-Measured ellipse & includes position and shape \\
-\tableline
-Raw Measured flux & \\
-\tableline
-Photometric calibration correction & specific to source location and
-SED, but not to shape\\
-\tableline
-Error in photometric calibration correction & \\
-\tableline
-Extraction flags & specify problems that were encountered in processing this DIASource
-\enddata
-\end{deluxetable}
-% -----------------------------------------------------------------------------------------------------------------
-\begin{deluxetable}{|p{2.5in} | p{3in}|}
-\tablecaption{FaintSource Table Contents}
-\tablewidth{0pt}
-\tablecolumns{2}
-\tabletypesize{\scriptsize}
-\startdata
-\tableline
-FaintSource ID & unique Id for this Source \\
-\tableline
-Object ID & for the Object associated with this Source\\
-\tableline
-MovingObject ID & for the MovingObject associated with this Source (only one of Object ID and MovingObject ID will be set)\\
-\tableline
-Exposure ID & for the Exposure or Difference Exposure from which this measurement was made \\
-\tableline
-Model predicted ellipse & elliptical footprint where forced photometry was made\\
-\tableline
-Measured flux & \\
-\tableline
-Measured sky background & \\
-\tableline
-Extraction flags & specify problems that were encountered in processing this FaintSource
-\enddata
-\end{deluxetable}
-% -----------------------------------------------------------------------------------------------------------------
-\begin{deluxetable}{|p{2.5in} | p{3in}|}
-\tablecaption{Exposure Table Contents}
-\tablewidth{0pt}
-\tablecolumns{2}
-\tabletypesize{\scriptsize}
-\startdata
-\tableline
-Exposure ID & unique Id for this Exposure \\
-\tableline
-Filter ID & for the filter used for this Exposure\\
-\tableline
-TAI time of exposure & for exposure midpoint \\
-\tableline
-WCS & World Coordinate System\\
-\tableline
-PSF & Parameterized point spread function \\
-\tableline
-Telescope state information & TBD \\
-\tableline
-Camera state information & TBD \\
-\tableline
-Site conditions information & TBD \\
-\tableline
-Shutter trajectory information & TBD \\
-\tableline
-Atmospheric transmission map & as function of position, derived from
-the Photometric Calibration Pipeline (not described here)\\
-\enddata
-\end{deluxetable}
-
 
 \end{document}
