@@ -1,13 +1,19 @@
 sudo: true
 dist: trusty
+services:
+  - docker
 language: python
-matrix:
-  include:
-    - python: "3.5"
+python:
+  - '3.5'
 before_install:
-  - "sudo apt-get update && sudo apt-get install -y --no-install-recommends texlive-full latexmk poppler-utils lmodern texlive-xetex"
-install:
-  - git clone https://github.com/lsst/lsst-texmf.git
+  - "pip install 'lander>=0.1.0,<0.2'"
 script:
-  - export TEXMFHOME=./lsst-texmf/texmf
-  - make
+  # Compile PDF using containerized lsst-texmf
+  - "docker run --rm -v `pwd`:/workspace -w /workspace lsstsqre/lsst-texmf:latest sh -c 'make'"
+  # Deploy website. See https://github.com/lsst-sqre/lander for CLI options
+  - "lander --pdf LSE-63.pdf --upload --lsstdoc LSE-63.tex --env=travis --ltd-product lse-63"
+env:
+  global:
+    # Add LSST the Docs credentials
+    - secure: "SdA/hIiw0mmahqlYzPUaDwQZ45Hq/VMKeVvHyaSwP0yY9p88UIn2cLJMFvVnuzFnFlddmlF8GVg9slWrZkwo3/ng4571noHEM1Ax2HUBMTJIkTsf6JjBvvNXohdPAPriOMJBTqJAxs9nHy5WSH8uFJ/oF11yd4mWEXad2hRWf2zXDek+qet4v56GRMl1bFdEZLS2SmN+vhZC8p15xfNlG9b19hQbtXbsV1lF//xVmM+M5i12Bm1vekWh2M2qxk/BDiG8YVRNrRJ5FdC4L4QnaZNSIz6fOJVxP+zwvlQVk0KytjK82DjxpB19W2/Ysh/Up1/JKxdymlRee/86XYPZ2W7hztevH9lScxS/34aqVndZP157+8uj1O5bydey3xJe9pvIMcwV4yvLkC4bgHCp5Cy9qn1w1HZGb8XJZLVLOn2LingYvrI035K5ag59bXsAWw3ZxVHbm5ITkTWqQZdReL2TlFwo3UUI+0Fdp3YkGnjCmsihWF1t/A5BiNofflMwaK5LlLGp34hEhJvcHsV6fbVdkZJkb9cW3iX+ELnkwld74MeCGFn6DhGaWskfy/uBNuUpirJTzT0gvwgQtZ4cu4NnnhZBG/J7hN35n1u5TlvGW9DOdxTysQycWKm+ZyP3aZzcvfU+hHfCsr0Z4Kwc4c7Gmu1/qmakDWAHkhVJdPQ="
+    - secure: "QhQGWlpnDr+V7E4Vc7RbEHL0ljGpv9gWofMQ4CzOWZvl/1Iy9s4v0hWzjvmPhPnVB8BHPMoQRqImeHbln9lkv+NAlwSJVp2t7CGkcQUwRVbaPYbGo56pA3E1QcuIXEfKZlDveGH1I4FBJyRLiRMi/OY8g1oU6KMHp8BpuXTlzyFncWIKhMAPvCiY5E0tQ7mghsEekyLmNR0a/JhEpZ1V5Gchav9FNaOdTVZRGwAhlZkqBtR/soNCAe5vwhrrlU3YvsKkXymTdV5hOXTvw3Swaml4qfyz7hyKi3pj1qIimVlzlpA8i+GefNRS7+Q77ELkAKvMxKdyJqbuBxyboYb8WIdZELVFCEp/z2EkTnNm4957N+n5YBXjhagqQffeVrRRxa8bijmwlb3bGOnFUMnoJHLMCUo9jnG1VhPdiZXakEDqkAUAQHNgimHZN22TZgxqwyAhPyJbqFaSMGjZm2vooJiAZRIZQcmtUwMMBlL7CMF8bkfwS0ilC/xprXqzErb0P9KbpLHXemOvqsA5uw2gkSJFEckUL/AFLLKYKZBsAVQ7gOYerK3RYT2UJtRoKJxx2INB0rFrrA2f3L6YoMtfOoC6fmTXI8CAwH9/9G7IEo26WnRH07uZ2PRzHUGpMNiMa624tzbQMGVlbbe6S/FbnH5Dje1v9cpSGYDNYd6Hl0M="
